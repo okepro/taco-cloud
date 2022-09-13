@@ -67,11 +67,11 @@ public class DesignTacoController {
         return new Taco();
     }
 
-    private static Iterable<Ingredient> filterByType(Iterable<Ingredient> ingredients, Type type) {
+    private Iterable<Ingredient> filterByType(Iterable<Ingredient> ingredients, Type type) {
         List<Ingredient> filteredIngredients = new ArrayList<>();
 
         Iterator<Ingredient> iterator = ingredients.iterator();
-        if (iterator.hasNext()) {
+        while (iterator.hasNext()) {
             Ingredient ingredient = iterator.next();
             if (type.equals(ingredient.getType())) {
                 filteredIngredients.add(ingredient);

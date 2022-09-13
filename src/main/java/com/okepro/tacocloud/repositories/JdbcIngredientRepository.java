@@ -2,14 +2,20 @@ package com.okepro.tacocloud.repositories;
 
 import com.okepro.tacocloud.models.Ingredient;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class JdbcIngredientRepository implements IngredientRepository {
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
+
+    public JdbcIngredientRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     @Override
     public Iterable<Ingredient> findAll() {
@@ -35,10 +41,6 @@ public class JdbcIngredientRepository implements IngredientRepository {
                 ingredient.getName(),
                 ingredient.getType());
         return ingredient;
-    }
-
-    public JdbcIngredientRepository(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
     }
 
     private Ingredient mapRowToIngredient(ResultSet row, int rowNum) throws SQLException {
