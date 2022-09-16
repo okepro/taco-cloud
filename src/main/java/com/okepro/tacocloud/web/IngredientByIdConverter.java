@@ -1,26 +1,22 @@
 package com.okepro.tacocloud.web;
 
 import com.okepro.tacocloud.models.Ingredient;
-import com.okepro.tacocloud.repositories.JdbcIngredientRepository;
+import com.okepro.tacocloud.repositories.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.Map;
-import com.okepro.tacocloud.models.Ingredient.Type;
-
 @Component
 public class IngredientByIdConverter implements Converter<String, Ingredient> {
-    private final JdbcIngredientRepository jdbcIngredientRepository;
+    private final IngredientRepository ingredientRepository;
 
     @Autowired
-    public IngredientByIdConverter(JdbcIngredientRepository jdbcIngredientRepository) {
-        this.jdbcIngredientRepository = jdbcIngredientRepository;
+    public IngredientByIdConverter(IngredientRepository IngredientRepository) {
+        this.ingredientRepository = IngredientRepository;
     }
 
     @Override
     public Ingredient convert(String id) {
-        return jdbcIngredientRepository.findById(id).orElse(null);
+        return ingredientRepository.findById(id).orElse(null);
     }
 }

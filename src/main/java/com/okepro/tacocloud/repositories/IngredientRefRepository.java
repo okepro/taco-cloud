@@ -1,9 +1,7 @@
 package com.okepro.tacocloud.repositories;
 
-import com.okepro.tacocloud.models.Ingredient;
+import com.okepro.tacocloud.models.IngredientRef;
+import org.springframework.data.repository.CrudRepository;
 
-import java.util.List;
-
-public interface IngredientRefRepository {
-    void saveIngredientRefs(long tacoId, List<Ingredient> ingredient);
+public interface IngredientRefRepository extends CrudRepository<IngredientRef, Long> {
 }
